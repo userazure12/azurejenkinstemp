@@ -1,0 +1,7 @@
+resource_group_name = "engineer1"
+resource_group_location = "West Europe"
+virtual_network_name = "syllabus1"
+subnet_name = "Unit1"
+network_interface_name = "Theorem1"
+virtual_machine_name = "Geotech1"
+managed_disk_name = "M501"
