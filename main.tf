@@ -67,7 +67,7 @@ resource "azurerm_virtual_machine" "MUMBAI" {
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"
   }
- computer_name  = var.computer_name
+    computer_name  = var.computer_name
     admin_username = var.admin_username
     disable_password_authentication = false
     admin_password = var.admin_password
