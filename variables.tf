@@ -21,6 +21,7 @@ variable "public_ip_name" {
   type        = string
   description = "public ip name in azure"
 }
+
 variable "network_interface_name" {
   type        = string
   description = "network interface name in azure"
