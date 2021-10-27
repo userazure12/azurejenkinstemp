@@ -24,6 +24,7 @@ resource "azurerm_subnet" "internal" {
 
 resource "azurerm_public_ip" "BOSSIP" {
     name                         = var.public_ip_name
+    location                     = "West Europ"
     resource_group_name          = azurerm_resource_group.BOSS.name
     allocation_method            = "Dynamic"
 }
