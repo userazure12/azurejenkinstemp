@@ -22,7 +22,7 @@ resource "azurerm_subnet" "internal" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-resource "azurerm_public_ip" "BOSS" {
+resource "azurerm_public_ip" "BOSSIP" {
     name                         = var.public_ip_name
     resource_group_name          = azurerm_resource_group.BOSS.name
     allocation_method            = "Dynamic"
