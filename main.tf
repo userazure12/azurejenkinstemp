@@ -22,6 +22,12 @@ resource "azurerm_subnet" "internal" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+resource "azurerm_public_ip" "BOSS" {
+    name                         = var.public_ip_name
+    resource_group_name          = azurerm_resource_group.BOSS.name
+    allocation_method            = "Dynamic"
+}
+
 resource "azurerm_network_interface" "VPP" {
   name                = var.network_interface_name
   location            = azurerm_resource_group.BOSS.location
@@ -31,6 +37,7 @@ resource "azurerm_network_interface" "VPP" {
     name                          = "testconfiguration1"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.BOSS.id
   }
 }
 
