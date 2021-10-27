@@ -16,6 +16,11 @@ variable "subnet_name" {
   type        = string
   description = "subnet name in azure"
 }
+
+variable "ip_address_name" {
+  type        = string
+  description = "address name in azure"
+}
 variable "network_interface_name" {
   type        = string
   description = "network interface name in azure"
