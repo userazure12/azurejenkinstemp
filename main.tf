@@ -67,14 +67,12 @@ resource "azurerm_virtual_machine" "MUMBAI" {
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"
   }
-  os_profile {
-    computer_name  = "hostname"
-    admin_username = "Patil123"
-    admin_password = "Patil@123"
-  }
-  os_profile_linux_config {
+ computer_name  = var.computer_name
+    admin_username = var.admin_username
     disable_password_authentication = false
-  }
+    admin_password = var.admin_password
+  
+  
   tags = {
     environment = "demo"
   }
