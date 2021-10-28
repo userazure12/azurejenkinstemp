@@ -42,54 +42,33 @@ resource "azurerm_network_interface" "VPP" {
   }
 }
 
-resource "azurerm_virtual_machine" "MUMBAI" {
-  name                  = var.virtual_machine_name
-  location              = azurerm_resource_group.BOSS.location
-  resource_group_name   = azurerm_resource_group.BOSS.name
-  network_interface_ids = [azurerm_network_interface.VPP.id]
-  vm_size               = "Standard_D2s_v3"
+resource "azurerm_linux_virtual_machine" "MUMBAI" {
+    name                  = var.vm_name
+    resource_group_name   = azurerm_resource_group.BOSS.name
+    network_interface_ids = [azurerm_network_interface.VPP.id]
+    size                  = var.vm_size
 
-  # Uncomment this line to delete the OS disk automatically when deleting the VM
-  # delete_os_disk_on_termination = true
+    os_disk {
+        name              = var.os_disk
+        caching           = "ReadWrite"
+        storage_account_type = "Premium_LRS"
+    }
 
-  # Uncomment this line to delete the data disks automatically when deleting the VM
-  # delete_data_disks_on_termination = true
+    source_image_reference {
+        publisher = "Canonical"
+        offer     = "UbuntuServer"
+        sku       = "18.04-LTS"
+        version   = "latest"
+    }
+    computer_name  = var.computer_name
+    admin_username = var.admin_username
+    disable_password_authentication = false
+    admin_password = var.admin_password
 
-  storage_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
-  }
-  storage_os_disk {
-    name              = "myosdisk1"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Premium_LRS"
-  }
-   computer_name  = var.computer_name
-   admin_username = var.admin_username
-   disable_password_authentication = false
-   admin_password = var.admin_password
+    
 
-  
-  
-  tags = {
-    environment = "demo"
-  }
-}
-resource "azurerm_managed_disk" "MEGA" {
-  name                 = var.managed_disk_name
-  location             = azurerm_resource_group.BOSS.location
-  resource_group_name  = azurerm_resource_group.BOSS.name
-  storage_account_type = "Standard_LRS"
-  create_option        = "Empty"
-  disk_size_gb         = 10
-}
-
-resource "azurerm_virtual_machine_data_disk_attachment" "example" {
-  managed_disk_id    = azurerm_managed_disk.MEGA.id
-  virtual_machine_id = azurerm_virtual_machine.MUMBAI.id
-  lun                = "10"
-  caching            = "ReadWrite"
+    tags = {
+        environment = "demo"
+    }
+   
 }
