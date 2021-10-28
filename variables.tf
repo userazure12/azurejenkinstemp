@@ -31,6 +31,22 @@ variable "virtual_machine_name" {
   type        = string
   description = "virtual machine name in azure"
 }
+
+variable "computer_name" {
+  type        = string
+  description = "computer name in azure"
+}
+
+variable "admin_username" {
+  type        = string
+  description = "admin username in azure"
+}
+
+variable "admin_password" {
+  type        = string
+  description = "admin password in azure"
+}
+
 variable "managed_disk_name" {
   type        = string
   description = "managed disk name in azure"
