@@ -27,9 +27,19 @@ variable "network_interface_name" {
   description = "network interface name in azure"
 }
 
-variable "virtual_machine_name" {
+variable "vm_name" {
   type        = string
-  description = "virtual machine name in azure"
+  description = "vm name in azure"
+}
+
+variable "vm_size" {
+  type        = string
+  description = "vm size in azure"
+}
+
+variable "os_disk" {
+  type        = string
+  description = "os disk in azure"
 }
 
 variable "computer_name" {
