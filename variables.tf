@@ -47,7 +47,3 @@ variable "admin_password" {
   description = "admin password in azure"
 }
 
-variable "managed_disk_name" {
-  type        = string
-  description = "managed disk name in azure"
-}
