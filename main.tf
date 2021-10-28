@@ -44,6 +44,7 @@ resource "azurerm_network_interface" "VPP" {
 
 resource "azurerm_linux_virtual_machine" "MUMBAI" {
     name                  = var.vm_name
+    location              = "West Europe"
     resource_group_name   = azurerm_resource_group.BOSS.name
     network_interface_ids = [azurerm_network_interface.VPP.id]
     size                  = var.vm_size
